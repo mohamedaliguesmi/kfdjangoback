@@ -1,14 +1,30 @@
+from sys import flags
 from django.contrib.auth.models import User
 from rest_framework import serializers, validators
 
-from finalback.models import role
+from finalback.models import  (
+    Arbitrator,
+    Coach,
+    Athlete,
+    Club,
+    Profile,
+    role,
+    Supporter
+    
+)
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("username", "password", "email", "first_name", "last_name",)
+        fields = ("username", "password", "email", "first_name", "last_name")
         extra_kwargs = {
+            "role": {
+                "required": False,
+               
+                },
+
             "password": {"write_only": True},
             "username": {
                 "required": True,
@@ -37,4 +53,40 @@ class RegisterSerializer(serializers.ModelSerializer):
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = role
+        fields = '__all__'
+
+class ArbitratorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Arbitrator
+        fields = '__all__'
+
+
+class CoachSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Coach
+        fields = '__all__'
+
+
+class AthleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Athlete
+        fields = '__all__'
+
+
+class ClubSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Club
+        fields = '__all__'
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+
+
+class SupporterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Supporter
         fields = '__all__'
