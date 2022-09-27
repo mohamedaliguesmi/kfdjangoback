@@ -24,4 +24,6 @@ urlpatterns = [
     path('profile/<int:pk>/', views.ProfileDetail.as_view()),
     path('supporter/', views.SupporterList.as_view()),
     path('supporter/<int:pk>/', views.SupporterDetail.as_view()),
+    path('export/csv/', views.export_users_csv),
+    path('export/xls/', views.export_users_xls),
 ]

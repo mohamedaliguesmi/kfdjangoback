@@ -31,19 +31,19 @@ class role(models.Model):
 
 class Profile(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     
 
 
-    role =models.OneToOneField(role, null=True, on_delete=models.CASCADE)
+    role =models.OneToOneField(role, null=True, blank=True, on_delete=models.CASCADE)
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    country = models.TextField()
-    state = models.TextField()
-    city = models.TextField()
-    address = models.TextField()
-    zip_code = models.IntegerField()
-    phone = models.CharField(max_length=200, null=True)
-    location = models.TextField()
+    country = models.TextField(null=True, blank=True)
+    state = models.TextField(null=True, blank=True)
+    city = models.TextField(null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+    zip_code = models.IntegerField(null=True, blank=True)
+    phone = models.CharField(max_length=200, null=True, blank=True)
+    location = models.TextField(null=True, blank=True)
     
 
     class Meta:
