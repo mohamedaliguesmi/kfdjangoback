@@ -2,8 +2,9 @@ import profile
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import permissions
-
+from django.contrib.auth import get_user_model
 # Create your views here.
+from django.shortcuts import render
 
 
 from rest_framework.decorators import api_view
@@ -28,10 +29,11 @@ from .serializers import  (
     ProfileSerializer,
     RegisterSerializer,
     RoleSerializer,
-    SupporterSerializer
+    SupporterSerializer,
+    UserSerializer
 )
 #exel
-#import xlwt
+import xlwt
 import csv
 
 from django.http import HttpResponse
@@ -217,3 +219,18 @@ def export_users_xls(request):
 
     wb.save(response)
     return response
+
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+
