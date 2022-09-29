@@ -19,7 +19,13 @@ from finalback.models import  (
     Club,
     Profile,
     Supporter,
-    role
+    role,
+    Categorie,
+    Grade,
+    Licences,
+    Weights,
+    Seasons,
+
 )
 from .serializers import  (
     ArbitratorSerializer,
@@ -30,7 +36,13 @@ from .serializers import  (
     RegisterSerializer,
     RoleSerializer,
     SupporterSerializer,
-    UserSerializer
+    UserSerializer,
+    CategorieSerializer,
+    LicencesSerializer,
+    GradeSerializer,
+    SeasonsSerializer,
+    WeightSerializer
+
 )
 #exel
 import xlwt
@@ -48,6 +60,9 @@ def serialize_user(user):
         "last_name": user.last_name
         
     }
+
+
+
 
 @api_view(['POST'])
 def login(request):
@@ -92,6 +107,8 @@ def get_user(request):
     return Response({'error':'token'}, status=400)
 
 
+
+   
 
 class RoleList(generics.ListCreateAPIView):
     queryset = role.objects.all()
@@ -231,6 +248,63 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class CategorieList(generics.ListCreateAPIView):
+    queryset = Categorie.objects.all()
+    serializer_class = CategorieSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class CategorieDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Categorie.objects.all()
+    serializer_class = CategorieSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class LicencesList(generics.ListCreateAPIView):
+    queryset = Licences.objects.all()
+    serializer_class = LicencesSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class LicencesDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Licences.objects.all()
+    serializer_class = LicencesSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class GradeList(generics.ListCreateAPIView):
+    queryset = Grade.objects.all()
+    serializer_class = GradeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class GradeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Grade.objects.all()
+    serializer_class = GradeSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+class SeasonsList(generics.ListCreateAPIView):
+    queryset = Seasons.objects.all()
+    serializer_class = SeasonsSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class SeasonsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Seasons.objects.all()
+    serializer_class = SeasonsSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class WeightsList(generics.ListCreateAPIView):
+    queryset = Weights.objects.all()
+    serializer_class = WeightSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class WeightsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Weights.objects.all()
+    serializer_class = WeightSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+
+
 
 
 

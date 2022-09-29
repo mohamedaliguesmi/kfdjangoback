@@ -8,25 +8,77 @@ from tkinter import CASCADE
 
 class role(models.Model):
 
-    ROLE = (
-			('Arbitrator', 'Arbitrator'),
-			('Athlete', 'Athlete'),
-			('Coach', 'Coach'),
-            ('Club','Club'),
-            ('Supporter','Supporter'),
-			)
+
 
     
     created = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
-    roles = models.CharField(max_length=200, null=True, choices=ROLE)
+    roles = models.CharField(max_length=200, null=True)
+
+
+    class Meta:
+        ordering = ['created']
+
+class Weights(models.Model):
+
+ 
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
+    masse_en_killograme = models.IntegerField()
+
+    class Meta:
+        ordering = ['created']
+
+
+class Categorie(models.Model):
+
+ 
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
+    categorie_age = models.IntegerField()
+
+    class Meta:
+        ordering = ['created']
+
+
+class Grade(models.Model):
+
+ 
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
+    Grade = models.IntegerField()
+
+    class Meta:
+        ordering = ['created']
+
+class Seasons(models.Model):
+
+ 
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
+    Seasons = models.IntegerField()
+    activated =models.BooleanField()
+    
 
 
     class Meta:
         ordering = ['created']
 
 
+class Licences(models.Model):
 
+
+    user = models.OneToOneField(User, null=True, on_delete=models.DO_NOTHING)
+    role =models.ForeignKey(role, null=True, blank=True, on_delete=models.DO_NOTHING)
+    seasons =models.ForeignKey(Seasons, null=True, blank=True, on_delete=models.DO_NOTHING)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
+    num_licences = models.IntegerField(null=True, blank=True)
+    activated =models.BooleanField(null=True, blank=True)
+
+
+    class Meta:
+        ordering = ['created']
 
 
 class Profile(models.Model):
@@ -35,8 +87,10 @@ class Profile(models.Model):
     
 
 
-    role =models.ForeignKey(role, null=True, blank=True, on_delete=models.CASCADE)
+    role =models.ForeignKey(role, null=True, blank=True, on_delete=models.DO_NOTHING)
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    categorie = models.ForeignKey(Categorie, null=True, on_delete=models.DO_NOTHING)
+    licences = models.ForeignKey(Licences, null=True, on_delete=models.CASCADE)
     country = models.TextField(null=True, blank=True)
     state = models.TextField(null=True, blank=True)
     city = models.TextField(null=True, blank=True)
@@ -101,8 +155,8 @@ class Coach(models.Model):
     last_name = models.TextField(null=True, blank=True)
     sex = models.TextField(null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
-    id_grade = models.TextField(null=True, blank=True)
     profile = models.OneToOneField(Profile, null=True, on_delete=models.CASCADE)
+    grade = models.ForeignKey(Grade, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         ordering = ['created']
@@ -122,6 +176,7 @@ class Athlete(models.Model):
     photo = models.ImageField( upload_to='image/', null=True, blank=True)
     idantity_photo = models.ImageField( upload_to='image/', null=True, blank=True)
     profile = models.OneToOneField(Profile, null=True, on_delete=models.CASCADE)
+    weights = models.ForeignKey(Weights, null=True, on_delete=models.DO_NOTHING)
     
 
 

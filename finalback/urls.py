@@ -29,4 +29,15 @@ urlpatterns = [
     #path('alluser/', views.showthis),
     path('allusers/', views.UserList.as_view()),
     path('allusers/<int:pk>/', views.UserDetail.as_view()),
+    path('categorie/', views.CategorieList.as_view()),
+    path('categorie/<int:pk>/', views.CategorieDetail.as_view()),
+    path('Licences/', views.LicencesList.as_view()),
+    path('Licences/<int:pk>/', views.LicencesDetail.as_view()),
+    path('Grade/', views.GradeList.as_view()),
+    path('Grade/<int:pk>/', views.GradeDetail.as_view()),
+    path('Seasons/', views.SeasonsList.as_view()),
+    path('Seasons/<int:pk>/', views.SeasonsDetail.as_view()),
+    path('Weights/', views.WeightsList.as_view()),
+    path('Weights/<int:pk>/', views.WeightsDetail.as_view()),
+
 ]

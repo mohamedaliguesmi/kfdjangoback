@@ -9,7 +9,13 @@ from finalback.models import  (
     Club,
     Profile,
     role,
-    Supporter
+    Supporter,
+    Categorie,
+    Weights,
+    Seasons,
+    Grade,
+    Licences
+
     
 )
 
@@ -97,4 +103,33 @@ class SupporterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
+        fields = '__all__'
+
+
+
+
+class CategorieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Categorie
+        fields = '__all__'
+
+class WeightSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Weights
+        fields = '__all__'
+
+class SeasonsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Seasons
+        fields = '__all__'
+
+
+class GradeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grade
+        fields = '__all__'
+
+class LicencesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Licences
         fields = '__all__'

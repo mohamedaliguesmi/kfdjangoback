@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'knox',
     'finalback',
     "corsheaders",
+    'qr_code',
     
 ]
 
