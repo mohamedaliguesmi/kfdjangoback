@@ -39,5 +39,7 @@ urlpatterns = [
     path('seasons/<int:pk>/', views.SeasonsDetail.as_view()),
     path('weights/', views.WeightsList.as_view()),
     path('weights/<int:pk>/', views.WeightsDetail.as_view()),
-
+    # path('pro/', views.pro_list),
+    # path('pro/',views.pro_list),
+    path('pro/<int:pk>/',views.user_info),
 ]

@@ -1,9 +1,16 @@
+from cgi import print_form
 import profile
+from django.http.response import HttpResponseNotAllowed
+
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import permissions
 from django.contrib.auth import get_user_model
 # Create your views here.
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+
 from django.shortcuts import render
 
 
@@ -304,7 +311,59 @@ class WeightsDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+@csrf_exempt
+def pro_list(request):
+    """
+    List all code snippets, or create a new Profile.
+    """
+    if request.method == 'GET':
+        userb =User.objects.all()
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles , many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 
+@csrf_exempt
+def user_info(request, pk):
+    """
+    Retrieve, update or delete a code Profile.
+    """
+    # username = self.kwargs['username']
+    # username=int(request.user)
+    # return Profile.objects.filter(user=username)
+    # try:
+        
+    #     pro = Profile.objects.filter(user_id=pk)
+    # except Profile.DoesNotExist:
+    #     return HttpResponse(status=404)
 
+    # if request.method == 'GET':
+        
+    #     serializer = ProfileSerializer(pro)
+    #     return JsonResponse(serializer.data)
 
+    if request.method == 'GET':
+        
+        
+        user = User.objects.filter(id=pk)
+        userserializer = UserSerializer(user, many=True)
+        ok=False
+        profile = Profile.objects.all()
+        for p in profile:
+            print(p.user)
+            
+            if(p.user.pk==pk): 
+
+                print('a')
+            
+                profileserializer = ProfileSerializer(p, many=False)
+                # info.append(userserializer.data)
+                info=profileserializer.data
+                ok=True
+                break
+        if ok:
+
+         return JsonResponse(info, safe=False)
+        else :
+            return JsonResponse([], safe=False)
+        

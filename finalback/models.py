@@ -36,7 +36,7 @@ class Categorie(models.Model):
  
     created = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
-    categorie_age = models.CharField(max_length=200)
+    categorie_age = models.CharField(max_length=200,null=True, blank=True)
 
     class Meta:
         ordering = ['created']
@@ -47,7 +47,7 @@ class Grade(models.Model):
  
     created = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
-    Grade = models.CharField(max_length=200)
+    Grade = models.CharField(max_length=200,null=True, blank=True)
 
     class Meta:
         ordering = ['created']
@@ -92,13 +92,18 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     categorie = models.ForeignKey(Categorie, null=True, on_delete=models.DO_NOTHING)
     licences = models.ForeignKey(Licences, null=True, on_delete=models.CASCADE)
+    first_name = models.TextField(null=True, blank=True)
+    last_name = models.TextField(null=True, blank=True)
     country = models.TextField(null=True, blank=True)
     state = models.TextField(null=True, blank=True)
     city = models.TextField(null=True, blank=True)
     address = models.TextField(null=True, blank=True)
     zip_code = models.IntegerField(null=True, blank=True)
-    phone = models.CharField(max_length=200, null=True, blank=True)
+    profile_photo = models.ImageField( upload_to='image/', null=True, blank=True)
+    phone = models.IntegerField(null=True,blank=True)
     location = models.TextField(null=True, blank=True)
+    birthday = models.DateField(null=True, blank=True)
+    cin = models.TextField(null=True, blank=True)
     
 
     class Meta:
