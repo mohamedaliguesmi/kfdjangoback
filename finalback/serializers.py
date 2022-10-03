@@ -20,7 +20,6 @@ from finalback.models import  (
 )
 
 
-
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -55,11 +54,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-
 class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = role
         fields = '__all__'
+
 
 class ArbitratorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -91,13 +90,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class SupporterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Supporter
         fields = '__all__'
-
-
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -106,17 +102,17 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
-
 class CategorieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categorie
         fields = '__all__'
 
+
 class WeightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Weights
         fields = '__all__'
+
 
 class SeasonsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -128,6 +124,7 @@ class GradeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Grade
         fields = '__all__'
+
 
 class LicencesSerializer(serializers.ModelSerializer):
     class Meta:

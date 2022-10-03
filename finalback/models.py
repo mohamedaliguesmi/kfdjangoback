@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from tkinter import CASCADE
@@ -35,7 +36,7 @@ class Categorie(models.Model):
  
     created = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
-    categorie_age = models.IntegerField()
+    categorie_age = models.CharField(max_length=200)
 
     class Meta:
         ordering = ['created']
@@ -46,7 +47,7 @@ class Grade(models.Model):
  
     created = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
-    Grade = models.IntegerField()
+    Grade = models.CharField(max_length=200)
 
     class Meta:
         ordering = ['created']
@@ -56,8 +57,8 @@ class Seasons(models.Model):
  
     created = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
-    Seasons = models.IntegerField()
-    activated =models.BooleanField()
+    Seasons = models.CharField(max_length=200, null=True, blank=True)
+    activated =models.BooleanField(default=False)
     
 
 
@@ -74,7 +75,7 @@ class Licences(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     id = models.AutoField(primary_key=True)
     num_licences = models.IntegerField(null=True, blank=True)
-    activated =models.BooleanField(null=True, blank=True)
+    activated =models.BooleanField(default=False)
 
 
     class Meta:
